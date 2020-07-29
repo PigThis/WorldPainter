@@ -84,6 +84,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\DirectXMesh;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>dxcompiler.lib;d3d12.lib;dxgi.lib;d3dcompiler.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -121,11 +122,16 @@
     <ClCompile Include="D3DGameDirector.cpp" />
     <ClCompile Include="GameDirector.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D3DGameDirector.h" />
     <ClInclude Include="d3dx12.h" />
     <ClInclude Include="GameDirector.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshReader.h" />
+    <ClInclude Include="SDKMesh.h" />
+    <ClInclude Include="WaveFrontReader.h" />
     <ClInclude Include="winHelper.h" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +142,11 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">copy %(Identity) "$(OutDir)" &gt; NUL</Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)\%(Identity)</Outputs>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DirectXMesh\DirectXMesh_Desktop_2019_Win10.vcxproj">
+      <Project>{6857f086-f6fe-4150-9ed7-7446f1c1c220}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

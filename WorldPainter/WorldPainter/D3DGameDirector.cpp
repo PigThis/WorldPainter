@@ -1,4 +1,5 @@
 #include "D3DGameDirector.h"
+#include "MeshReader.h"
 
 D3DDirector::D3DDirector(unsigned int width, unsigned int height, std::wstring title) :
 	Director(width, height, title),
@@ -148,6 +149,12 @@ void D3DDirector::loadAssets()
 			{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
 			{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 }
 		};
+
+		//¡Ÿ ±¥˙¬Î
+		std::unique_ptr<Mesh> inMesh;
+		std::vector<Mesh::Material> inMaterial;
+		ThrowIfFailed(LoadFromOBJ(getAssetsPath(L"cthulhu_crystal01_forest.obj").c_str() , inMesh , inMaterial , false , false));
+		//
 
 		// Describe and create the graphics pipeline state object (PSO).
 		D3D12_GRAPHICS_PIPELINE_STATE_DESC psoDesc = {};

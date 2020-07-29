@@ -16,6 +16,8 @@
 #include "d3dx12.h"
 #include "winHelper.h"
 
+#include "Mesh.h"
+
 using namespace DirectX;
 using Microsoft::WRL::ComPtr; //Î¢ÈíµÄÖÇÄÜÖ¸Õë
 
