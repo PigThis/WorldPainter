@@ -177,7 +177,8 @@ void D3DDirector::loadAssets()
 	// Create the vertex buffer.
 	{
 		// Define the geometry for a triangle.
-		float aspectRatio = (getWidth() / getHeight());
+		float aspectRatio = static_cast<int>(getWidth());
+		aspectRatio = aspectRatio / getHeight();
 		Vertex triangleVertices[] =
 		{
 			{ { 0.0f, 0.25f * aspectRatio, 0.0f }, { 1.0f, 0.0f, 0.0f, 1.0f } },
