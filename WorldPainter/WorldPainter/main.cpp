@@ -1,6 +1,6 @@
 #include <windows.h>
 #include "winHelper.h"
-#include "GameDirector.h"
+#include "D3DGameDirector.h"
 
 LRESULT CALLBACK  WndProc(HWND, UINT, WPARAM, LPARAM);
 
@@ -34,6 +34,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 		ThrowLastErrorWithBox();
 		return FALSE;
 	}
+	shareDirector->bindHwnd(hWnd);
 	shareDirector->initGameProcedure();
 	ShowWindow(hWnd, nCmdShow);
 	UpdateWindow(hWnd);
@@ -79,7 +80,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	UNREFERENCED_PARAMETER(hPrevInstance);
 	UNREFERENCED_PARAMETER(lpCmdLine);
 
-	Director gameDirector(1136, 640, L"MyGame");
+	D3DDirector gameDirector(1136, 640, L"MyGame");
 
 	RegisterWindow(hInstance);
 	if (!InitInstance(hInstance, nCmdShow))

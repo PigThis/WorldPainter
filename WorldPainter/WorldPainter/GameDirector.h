@@ -20,6 +20,10 @@ public:
 	virtual void onUpdate();
 	virtual void onRender();
 
+#if defined(WIN32)
+	virtual void bindHwnd(HWND) = 0;
+#endif 
+
 	//void onKeyDown(UINT8 key);
 	//void onKeyUp(UINT8 key);
 protected:

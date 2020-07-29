@@ -1,6 +1,7 @@
 #pragma once
 #include <windows.h>
 #include <exception>
+#include <string>
 //通过窗口提示上一个错误
 inline void ThrowLastErrorWithBox()
 {
@@ -24,6 +25,23 @@ inline void ThrowIfFailed(HRESULT hr)
 {
 	if (FAILED(hr))
 	{
+#if defined(_DEBUG)
+		ThrowLastErrorWithBox();
+#endif
 		throw std::exception();
 	}
+}
+
+inline std::wstring getAssetsPath(LPCWSTR assetName)
+{
+	WCHAR assetsPath[512];
+	DWORD size = GetModuleFileName(nullptr, assetsPath, _countof(assetsPath));
+
+	WCHAR* lastSlash = wcsrchr(assetsPath, L'\\');
+	if (lastSlash)
+	{
+		*(lastSlash + 1) = L'\0';
+	}
+	std::wstring fullPathStr = assetsPath;
+	return fullPathStr + assetName;
 }
